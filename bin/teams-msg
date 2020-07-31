@@ -3,8 +3,11 @@
 import argparse
 import json
 import os
+import sys
 
-os.chdir(os.path.dirname(os.path.realpath(__file__)))
+dir = os.path.realpath(__file__).rsplit('/', 2)[0]
+os.chdir(f'{dir}/src')
+sys.path.append('../src')
 
 from config import config
 from auth import login
