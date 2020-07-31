@@ -18,6 +18,7 @@ def login(config):
     r = requests.post(url, data=payload)
 
     if r.status_code == 200:
-        return SimpleNamespace(**r.json())
+        data = r.json()
+        return SimpleNamespace(token_type=data['token_type'], access_token=data['access_token'])
     else:
         return False

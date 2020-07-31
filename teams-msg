@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+
+import argparse
+import json
+import os
+
+os.chdir(os.path.dirname(os.path.realpath(__file__)))
+
+from config import config
+from auth import login
+from sendmessage import send_message
+
+parser = argparse.ArgumentParser(description='Send message to a channel in MS Teams')
+parser.add_argument('message', type=str, help='Message to be sent')
+parser.add_argument('-c', '--channel', type=str, help='Channel to send the message', default=config.default_channel)
+
+args = parser.parse_args()
+
+message = args.message
+if args.channel in config.channels:
+    channel = config.channels[args.channel]
+else:
+    channel = args.channel
+
+response = login(config)
+if response != False:
+    r = send_message(message, response, channel=channel)
+    print(r)

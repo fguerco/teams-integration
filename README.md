@@ -1,35 +1,46 @@
-## Requisitos
+# Teams Integration - Send messages to a MS Teams channel
+
+This software will help automation tools send messages to a MS Teams channel
+
+## Requisites
 
 1. Python 3
-2. Biblioteca requests do python
+2. Python requests dependency
 
-        pip install requests
-3. Uma aplicação que tenha as seguintes permissões:
+       pip install requests
+3. An applicatin in the Active Directory with the permissions:
     - ChannelMessage.Send
     - user.read
 
-## Configuração
+## Configuration
 
-Crie um arquivo chamado config.json com o seguinte conteúdo:
+Create a file named config.json with contents:
 
     {
-      "tenant_id": "id da empresa",
-      "app_id": "id da aplicação",
-      "email": "seu email",
-      "password": "sua senha",
-      "client_secret": "secret",
-      "group": "grupo (team)",
-      "default_channel": "canal"
+      "tenant_id": "xxxx-aaa-bbbb (uuid)",
+      "app_id": "xxx-aaaa-bbbb (uuid)",
+      "email": "your email",
+      "password": "your senha",
+      "client_secret": "secret obtained from the app",
+      "group": "group id (team)",
+      "default_channel": "channel",
+      "channels": {
+        "alias": "id",
+        ...
+      }
     }
 
-## Dando consentimento
+## Giving consent
 
-Acessar a url https://login.microsoftonline.com/{tenant-id}/oauth2/authorize?client_id={app-id}&prompt=consent&response_type=code&redirect_uri=https%3A%2F%2Flogin.microsoftonline.com%2Fcommon%2Foauth2%2Fnativeclient
+In your browser go to
 
-## Obtendo os ids de grupo e canal
+    https://login.microsoftonline.com/{tenant-id}/oauth2/authorize?client_id={app-id}&prompt=consent&response_type=code&redirect_uri=https%3A%2F%2Flogin.microsoftonline.com%2Fcommon%2Foauth2%2Fnativeclient
+and follow the instructions
 
-Ir no MS Teams e selecionar canal. Clicar no botão "..." e escolher a opção "Get link to channel"
+## Getting ids for group and channel
 
-### Eexmplo de url
+Go to MS Teams e select the channel. Click the ellipsis (...) and choose the menu option "Get link to channel"
+
+### Example URL
 
 https://teams.microsoft.com/l/channel/{id-do-canal}/{nome-do-canal}?groupId={id-do-grupo}&tenantId={id-to-tenant}
