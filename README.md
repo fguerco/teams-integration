@@ -30,6 +30,21 @@ Create a file named config.json with contents:
       }
     }
 
+## Using docker
+
+This project has `Dockerfile` and `docker-compose.yml` for convenience. If you wish to develop using docker:
+
+Start with
+
+    $ docker-compose up -d
+Then run the application with
+
+    $ docker-compose exec app teams-msg [args]
+
+When you are done
+
+    $ docker-compose down
+
 ## Giving consent
 
 In your browser go to

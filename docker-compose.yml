@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./config.json:/app/config.json
+      - ./src:/app/src
+      - ./bin:/app/bin
+    entrypoint: ["sleep", "infinity"]
